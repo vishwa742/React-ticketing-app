@@ -1,0 +1,29 @@
+/* .board {
+  outline: 2px solid rgb(134, 154, 189);
+} */
+
+.row {
+  height: 35px;
+}
+
+.cell {
+  width: 35px;
+  height: 35px;
+  outline: 1px solid rgb(134, 154, 189);
+  display: inline-block;
+  background-color: blueviolet;
+}
+
+.row :active {
+  background-color: crimson;
+}
+
+.item {
+  background: var(--clr-white);
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--fixed-width);
+  margin: 2rem auto;
+  align-items: center;
+  border-radius: var(--radius);
+}
