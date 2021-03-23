@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./App.css";
+import Node from "./components/grid.js";
 
 function App() {
-  //const colors = ["red", "blue", "green", "yellow", "black"];
-  const color = "red";
   const [modal, setModal] = useState("");
   const [count, setCount] = useState("");
-
   const [value, setValue] = useState("purple");
+
   const redClick = () => {
     setValue("red");
     setModal("");
@@ -43,6 +42,8 @@ function App() {
   return (
     <>
       <div className="container">
+        <Node></Node>
+
         <h2>Button and Colors</h2>
         <h1>{value}</h1>
         <h1>
@@ -65,6 +66,7 @@ function App() {
           Submit
         </button>
       </div>
+
       <div class="grid" style={{ backgroundColor: value }} onClick={countClick}>
         <div></div>
         <div></div>
