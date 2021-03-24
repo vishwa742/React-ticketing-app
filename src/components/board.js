@@ -24,9 +24,9 @@ const Board = () => {
     console.log(rowIdx, cellIdx);
     setRowLoc(rowIdx);
     setColLoc(cellIdx);
-    setBoard(
-      new Array(rowIdx + 1).fill(0).map((row) => new Array(cellIdx + 1).fill(0))
-    );
+    // setBoard(
+    //   new Array(rowIdx + 1).fill(0).map((row) => new Array(cellIdx + 1).fill(0))
+    // );
   };
 
   return (
