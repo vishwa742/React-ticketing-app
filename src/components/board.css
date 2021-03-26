@@ -3,15 +3,38 @@
 } */
 
 .row {
-  height: 35px;
+  height: 50px;
+  margin: 10px;
+  transition: transform 0.1s;
 }
 
+.cell:hover {
+  transform: scale(1.3);
+}
 .cell {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   outline: 1px solid rgb(134, 154, 189);
   display: inline-block;
-  background-color: blueviolet;
+  background-color: seagreen;
+  margin: 5px;
+  transition: transform 0.2s;
+  /* position: absolute; */
+  /* top: 0;
+  left: 0;
+  opacity: 0.8;
+  z-index: -5; */
+}
+
+/* .stack-top {
+  z-index: 5;
+  margin: 5px;
+  background-color: rebeccapurple;
+} */
+
+.img {
+  width: 0px;
+  height: 0px;
 }
 
 .cell-green {
@@ -30,11 +53,12 @@
   background-color: crimson;
 }
 
-.row.active {
-  background-color: crimson;
+div:focus {
+  background-color: red;
 }
 
-.row :visited {
+.row.active {
+  /* after click state */
   background-color: crimson;
 }
 
@@ -46,6 +70,7 @@
   margin: 2rem auto;
   align-items: center;
   border-radius: var(--radius);
+  white-space: pre-wrap;
 }
 
 .btn {

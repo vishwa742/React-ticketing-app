@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import "./board.css";
+import logo from "./seat.png";
 
 const BOARD_SIZE = 15;
 
@@ -9,21 +9,31 @@ const Board = () => {
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
 
+  var pos = [];
+  let newArray = [];
+
+  const row = document.querySelector(".row");
+  if (row) {
+    row.addEventListener("click", () => {
+      row.classlist += "active";
+    });
+  }
+
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [user1, setUser1] = useState(["black"]);
-
-  const getCellClassName = (user1) => {
-    let className = "cell";
-    console.log(className);
-
-    return className;
-  };
+  //const [index, setIndex] = useState({ rows: "", cols: "" });
+  const [rowItems, setRowItems] = useState("");
+  const [colItems, setColItems] = useState("");
 
   const displayPos = (rowIdx, cellIdx) => {
-    console.log(rowIdx, cellIdx);
-    setRowLoc(rowIdx);
-    setColLoc(cellIdx);
+    setRowLoc([...rowLoc, rowIdx]);
+    setColLoc([...colLoc, cellIdx]);
+
+    setRowItems(rowLoc.map((rowLoc) => <li>{rowLoc}</li>));
+    setColItems(colLoc.map((colLoc) => <li>{colLoc}</li>));
+    console.log(rowLoc, colLoc);
+
     // setBoard(
     //   new Array(rowIdx + 1).fill(0).map((row) => new Array(cellIdx + 1).fill(0))
     // );
@@ -78,35 +88,22 @@ const Board = () => {
                 key={cellIdx}
                 className="cell"
                 onClick={() => displayPos(rowIdx, cellIdx)}
-              ></div>
+              >
+                {<div>{/* {<img src={logo} className="img"></img>} */}</div>}
+              </div>
             ))}
           </div>
         ))}
       </div>
 
-      <div className="item">
+      {/* <div className="item">
         {rowLoc},{colLoc}
+      </div> */}
+      <div className="item">
+        <ul>row:{rowItems}</ul>
+        <ul>col:{colItems}</ul>
       </div>
     </>
-
-    // <div className="board">
-    //     {board.map((row, rowIdx) => (
-    //       <div key={rowIdx} className="row">
-    //         {row.map((cell, cellIdx) => (
-    //           <div
-    //             key={cellIdx}
-    //             className="cell"
-    //             onClick={() => displayPos(rowIdx, cellIdx)}
-    //           ></div>
-    //         ))}
-    //       </div>
-    //     ))}
-    //     <div className="item">
-    //       {" "}
-    //       {rowLoc},{colLoc}
-    //     </div>
-    //   </div>
-    // </>
   );
 };
 

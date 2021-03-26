@@ -34,18 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vishwa742/React-ticketing-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vishwa742/React-ticketing-app/issues"
-  },
-  "homepage": "https://github.com/vishwa742/React-ticketing-app#readme"
+  }
 }
