@@ -50,16 +50,82 @@ const Board = () => {
   let count = 0;
 
   const displayPos = (rowIdx, cellIdx) => {
-    setRowLoc([...rowLoc, rowIdx]);
-    setColLoc([...colLoc, cellIdx]);
-    console.log(rowLoc);
-    // setRowItems(rowLoc.map((rowLoc) => <li>{rowLoc}</li>));
-    // setColItems(colLoc.map((colLoc) => <li>{colLoc}</li>));
-    setRowItems(rowLoc.map((rowLoc) => <p>{rowLoc}</p>));
-    setColItems(colLoc.map((colLoc) => <p>{colLoc}</p>));
+    // Map col to Letter
+    let colLetter = "";
+    if (cellIdx === 0) {
+      colLetter = "A";
+    }
+    if (cellIdx === 1) {
+      colLetter = "B";
+    }
+    if (cellIdx === 2) {
+      colLetter = "C";
+    }
+    if (cellIdx === 3) {
+      colLetter = "D";
+    }
+    if (cellIdx === 4) {
+      colLetter = "E";
+    }
+    if (cellIdx === 5) {
+      colLetter = "F";
+    }
+    if (cellIdx === 6) {
+      colLetter = "G";
+    }
+    if (cellIdx === 7) {
+      colLetter = "H";
+    }
+    if (cellIdx === 8) {
+      colLetter = "I";
+    }
+    if (cellIdx === 9) {
+      colLetter = "J";
+    }
+
+    setRowLoc([...rowLoc, rowIdx + 1]);
+    setColLoc([...colLoc, colLetter]);
+
+    // SetCol and SetRow are interchanged to match grid
+
+    setColItems(rowLoc.map((rowLoc) => <p>{rowLoc}</p>));
+    setRowItems(colLoc.map((colLoc) => <p>{colLoc}</p>));
+    //console.log("" colItems);
     // setRowLoc([]);
     // setColLoc([]);
   };
+
+  // let var colLetter = "";
+  // if (colItems === 0) {
+  //   colLetter = A;
+  // }
+  // if (colItems === 1) {
+  //   colLetter = B;
+  // }
+  // if (colItems === 2) {
+  //   colLetter = C;
+  // }
+  // if (colItems === 3) {
+  //   colLetter = D;
+  // }
+  // if (colItems === 4) {
+  //   colLetter = E;
+  // }
+  // if (colItems === 5) {
+  //   colLetter = F;
+  // }
+  // if (colItems === 6) {
+  //   colLetter = G;
+  // }
+  // if (colItems === 7) {
+  //   colLetter = H;
+  // }
+  // if (colItems === 8) {
+  //   colLetter = I;
+  // }
+  // if (colItems === 9) {
+  //   colLetter = J;
+  // }
 
   const getClassName = () => {
     let userNo = user1;
@@ -72,11 +138,14 @@ const Board = () => {
   // Selecting the Tickets and submitting it -----------------------
 
   const submitData = () => {
+    //console.log(colItems);
     if (user1 === "") {
       setMasterData({ rows: "", cols: "", user: "" });
       alert("Select a user before choosing tickets");
     } else {
+      //setMasterData({ rows: rowItems, cols: colItems, user: user1 });
       setMasterData({ rows: rowItems, cols: colItems, user: user1 });
+      //console.log(colLetter);
     }
     return setMasterData;
   };
@@ -90,11 +159,7 @@ const Board = () => {
       <div className="board">
         {board.map((row, rowIdx) => (
           <div key={rowIdx} className="row">
-            {/* <ul>
-              {alphabets.map((valuess, indexss) => {
-                return <p key={indexss}>{valuess}</p>;
-              })}
-            </ul> */}
+            {}
             {row.map((cell, cellIdx) => (
               <div
                 key={cellIdx}
@@ -168,8 +233,11 @@ const Board = () => {
 
       <div className="item">
         <h2>{masterData.user}</h2>
-        <h2>{masterData.rows}</h2>
-        <h2>{masterData.cols}</h2>
+
+        <p>{masterData.rows}</p>
+        <p>{masterData.cols}</p>
+        {/* <h2>{masterData.rows}</h2>
+        <h2>{masterData.cols}</h2> */}
       </div>
       <div className="item">
         <ul>row:{rowItems}</ul>
