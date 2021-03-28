@@ -29,24 +29,6 @@ function App() {
       <div className="container">
         {/* <Node></Node> */}
         <Board />
-
-        {/* <h2>Button and Colors</h2>
-        <h1>{value}</h1>
-        <h1>{modal}</h1>
-
-        <button className="btn" onClick={redClick}>
-          Red
-        </button>
-        <button className="btn" onClick={greenClick}>
-          Green
-        </button>
-        <button className="btn" onClick={yellowClick}>
-          Yellow
-        </button>
-        <button className="btn" onClick={blueClick}>
-          Blue
-        </button>
-        <button className="btn">Submit</button> */}
       </div>
     </>
   );

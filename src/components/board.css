@@ -2,6 +2,27 @@
   outline: 2px solid rgb(134, 154, 189);
 } */
 
+.wrapper {
+  height: 100vh;
+  display: flex;
+
+  /* Direction of the items, can be row or column */
+  flex-direction: column;
+}
+
+header,
+footer {
+  height: 30px;
+  background-color: orangered;
+}
+
+main {
+  flex: 1;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
 .row {
   height: 50px;
   margin: 10px;
