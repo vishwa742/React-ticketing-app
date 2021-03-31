@@ -1,4 +1,4 @@
-
+1. Change combinedPos to be created at DisplayPos insted of SubmitData
 2. Prevent users selecting same girds
 3. click new user sets prev selected row 
 and cols to 0. (select user -> select grid ->

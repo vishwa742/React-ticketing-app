@@ -1,35 +1,26 @@
 import React from "react";
 import "./App.css";
-// import Node from "./components/grid.js";
+import Nav from "./Nav.js";
+import Login from "./login.js";
 import Board from "./components/board.js";
+import Checkout from "./components/CheckOut.js";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-  // const [modal, setModal] = useState("");
-  // const [value, setValue] = useState("purple");
-
-  // const redClick = () => {
-  //   setValue("red");
-  //   setModal("");
-  // };
-  // const greenClick = () => {
-  //   setValue("green");
-  //   setModal("");
-  // };
-  // const yellowClick = () => {
-  //   setValue("yellow");
-  //   setModal("");
-  // };
-  // const blueClick = () => {
-  //   setValue("blue");
-  //   setModal("");
-  // };
-
   return (
     <>
       <div className="container">
-        {/* <Node></Node> */}
         <Board />
       </div>
+      <Router>
+        <div className="container">
+          {/* <Route path="/bookticket" component={Board}></Route> */}
+
+          <Route path="/checkout" component={Checkout}></Route>
+        </div>
+        <div className="container">{/* <p1>Hi</p1> */}</div>
+      </Router>
     </>
   );
 }

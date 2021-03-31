@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./board.css";
 //import logo from "./seat.png";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CheckOut from "./CheckOut.js";
 
 const BOARD_SIZE = 10;
 
@@ -9,30 +11,36 @@ const Board = () => {
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
 
-  const row = document.querySelector(".row");
-  if (row) {
-    row.addEventListener("click", () => {
-      row.classlist += "active";
-    });
-  }
+  // const row = document.querySelector(".row");
+  // if (row) {
+  //   row.addEventListener("click", () => {
+  //     row.classlist += "active";
+  //   });
+  // }
 
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [user1, setUser1] = useState("");
-  // const [masterData, setMasterData] = useState({
-  //   rows: "",
-  //   cols: "",
-  //   user: "",
-  // });
+
   const [masterData, setMasterData] = useState({
     position: "",
     user: "",
   });
+  const [checkInsideDisplay, setcheckInsideDisplay] = useState({
+    row: "",
+    col: "",
+  });
+
   const [rowItems, setRowItems] = useState("");
   const [colItems, setColItems] = useState("");
   const [combinedPos, setCombinedPos] = useState([]);
+  const [selectedTickets, setSelectedTickets] = useState([]);
+  const [tempPos, setTempPos] = useState("");
+  const [tempPosCopy, setTempPosCopy] = useState("");
 
   const displayPos = (rowIdx, cellIdx) => {
+    let cellString = cellIdx + 1;
+    cellString.toString();
     // Map col to Letter --------------------------------------
     let rowLetter = "";
     if (rowIdx === 0) {
@@ -66,32 +74,46 @@ const Board = () => {
       rowLetter = "J";
     }
 
-    setRowLoc([...rowLoc, rowLetter]);
-    setColLoc([...colLoc, cellIdx + 1]);
+    // TO be changed that so that only unselected seats are passed
+
+    var realTimeBeingClicked = rowLetter + cellString;
+    console.log(realTimeBeingClicked);
+    //console.log(tempPos);
+    var newTempPos = tempPos.toString();
+
+    // if String in string
+    if (newTempPos.indexOf(realTimeBeingClicked) >= 0) {
+      alert("Ticket already selected");
+    } else {
+      setRowLoc([...rowLoc, rowLetter]);
+      setColLoc([...colLoc, cellIdx + 1]);
+    }
+    // return <div className="item">{setRowLoc}</div>;
   };
 
   // Selecting the Tickets and submitting it -----------------------
 
   const submitData = () => {
+    setTempPosCopy("");
+    //setCombinedPos([]);
     if (user1 === "") {
-      setMasterData({ rows: "", cols: "", user: "" });
+      setMasterData({ position: "", user: "" });
       alert("Select a user before choosing tickets");
     } else {
       var combinedPosition = rowLoc.map(function (d, i) {
         return d + String(colLoc[i]);
       });
+
+      // Covert Position to P tag
       setCombinedPos(
         combinedPosition.map((combinedPosition) => <p>{combinedPosition}</p>)
       );
-
       setMasterData({ position: combinedPos, user: user1 });
 
-      // var combinedPos = rowLoc.map(function (d, i) {
-      //   return d + String(colLoc[i]);
-      // });
-      console.log(combinedPos);
-      console.log(colLoc);
-      //if empty go ahead and set masterdata. if not, pass value?
+      // Trying to Combine all previously selected positions ----------------
+      setTempPos((tempPos) => {
+        return [...tempPos, combinedPosition];
+      });
     }
     return setMasterData;
   };
@@ -183,14 +205,25 @@ const Board = () => {
             Submit
           </button>
           <p>{user1}</p>
+          <Router>
+            <Link to="/checkout">
+              <button className="btn" key="6">
+                Test Submit
+              </button>
+            </Link>
+          </Router>
 
           <div className="item">
             <h2>{masterData.user}</h2>
             <p>{combinedPos}</p>
           </div>
           <div className="item">
-            <ul>{rowItems}</ul>
+            {combinedPos} : Price ${combinedPos.length * 5}
           </div>
+          <div className="item">Click History:{tempPos}</div>
+          {/* <div className="item">tempPosCopy:{tempPosCopy}</div> */}
+
+          {/* <div className="item">tempPos:{checkInsideDisplay.row}</div> */}
         </main>
         <footer></footer>
       </div>

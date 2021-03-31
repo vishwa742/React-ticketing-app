@@ -211,6 +211,18 @@ p {
   border-radius: var(--radius);
   text-transform: capitalize;
 }
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(71, 105, 105);
+  color: white;
+  /* max-width: var(--fixed-width);
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  grid-template-columns: repeat(3, 1fr); */
+}
 
 .modal p {
   margin-bottom: 0;
@@ -249,11 +261,11 @@ p {
   cursor: pointer;
 }
 .nav-links {
-  max-width: var(--fixed-width);
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  width: 50%;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  list-style: none;
 }
 .nav-links a {
   color: var(--clr-grey-5);
