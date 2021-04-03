@@ -49,29 +49,16 @@ main {
   height: 0px;
 }
 
-.cell-green {
-  background-color: green;
-}
-
-.cell-red {
+.row :active {
   background-color: red;
 }
 
-.cell-purple {
-  background-color: purple;
-}
-
-.row :active {
+.cell :active {
   background-color: red;
 }
 
 div:focus {
   background-color: rgb(102, 255, 0);
-}
-
-.row.active {
-  /* after click state */
-  background-color: rgb(23, 20, 220);
 }
 
 .item {
@@ -104,4 +91,33 @@ div:focus {
 .btn:hover {
   background: var(--clr-primary-1);
   color: var(--clr-primary-5);
+}
+
+.bookList {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 5rem auto;
+  display: grid;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .bookList {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+}
+
+.movie {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem 4rem;
+}
+
+.movie h1 {
+  margin-top: 0.5rem;
+}
+
+.movie p {
+  margin-top: 0.5rem;
 }

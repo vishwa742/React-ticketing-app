@@ -11,13 +11,6 @@ const Board = () => {
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
 
-  // const row = document.querySelector(".row");
-  // if (row) {
-  //   row.addEventListener("click", () => {
-  //     row.classlist += "active";
-  //   });
-  // }
-
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [user1, setUser1] = useState("");
@@ -37,6 +30,10 @@ const Board = () => {
   const [selectedTickets, setSelectedTickets] = useState([]);
   const [tempPos, setTempPos] = useState("");
   const [tempPosCopy, setTempPosCopy] = useState("");
+
+  const test = () => {
+    console.log("test");
+  };
 
   const displayPos = (rowIdx, cellIdx) => {
     let cellString = cellIdx + 1;
@@ -129,8 +126,7 @@ const Board = () => {
         <main>
           <div className="board">
             {board.map((row, rowIdx) => (
-              <div key={rowIdx} className="row">
-                {}
+              <div key={rowIdx} className="row" onClick={test}>
                 {row.map((cell, cellIdx) => (
                   <div
                     key={cellIdx}

@@ -364,3 +364,32 @@ nav {
 .grid :active {
   background-color: black;
 }
+
+.bookList {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 5rem auto;
+  display: grid;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .bookList {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+}
+
+.movie {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem 4rem;
+}
+
+.movie h1 {
+  margin-top: 0.5rem;
+}
+
+.movie p {
+  margin-top: 0.5rem;
+}
