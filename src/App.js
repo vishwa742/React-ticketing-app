@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Seat from "./seat.png";
 import "./App.css";
 import Nav from "./Nav.js";
 import Login from "./login.js";
@@ -27,15 +28,38 @@ function App() {
   }, []);
   return (
     <>
-      <section className="bookList">
+      <table
+        style={{
+          backgroundColor: "#000",
+          display: "block",
+          color: "#FFF",
+        }}
+      >
+        <tbody>
+          <tr>
+            <td>
+              <img src={Seat} width="50px"></img>
+            </td>
+            <td>
+              <h3>Ticket Booking</h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section className="movieList">
         {movieNames.map((movie) => (
-          <MovieList />
+          <MovieList {...movie} key={movie.id} />
         ))}
       </section>
+      {/* <div className="container">
+        <Board />
+      </div> */}
+
       <Router>
         <div className="container">
           {/* <Route path="/bookticket" component={Board}></Route> */}
-
+          <Route path="/board" component={Board}></Route>
           <Route path="/checkout" component={Checkout}></Route>
         </div>
         <div className="container">{/* <p1>Hi</p1> */}</div>

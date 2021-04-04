@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import "./board.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Board from "./board.js";
 
-function MovieList() {
+const IMG_API = "https://image.tmdb.org/t/p/w300/";
+
+function MovieList({ title, poster_path }) {
   return (
-    <article className="movie">
-      <img
-        width="300px"
-        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Ep9HA3VwoEb_2NcGuBzhrQHaK9%26pid%3DApi&f=1"
-        alt=""
-      />
-      <h3>Captain Marvel</h3>
-    </article>
+    <>
+      <article className="movie">
+        <img src={IMG_API + poster_path} alt="" />
+        <div className="movie-hover">
+          <button className="btn">Book Tickets</button>
+          <button className="btn">Play Trailer</button>
+        </div>
+        <div className="movie-title">
+          <h3>{title}</h3>
+        </div>
+      </article>
+    </>
   );
 }
 

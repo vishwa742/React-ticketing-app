@@ -101,23 +101,9 @@ div:focus {
   gap: 2rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 576px) {
   .bookList {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-items: start;
   }
-}
-
-.movie {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1rem 4rem;
-}
-
-.movie h1 {
-  margin-top: 0.5rem;
-}
-
-.movie p {
-  margin-top: 0.5rem;
 }
