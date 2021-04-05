@@ -36,8 +36,14 @@ const Board = () => {
     console.log("test");
   };
 
-  const [boardIndeces, setBoardIndeces] = useState([]);
-  const [ifClicked, setIfClicked] = useState(false);
+  const [boardIndeces, setBoardIndeces] = useState([[]]);
+
+  const onCellClick = (rowIdx, cellIdx) => {
+    if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
+      const newBoardIndeces = (boardIndeces[rowIdx][cellIdx] = true);
+      setBoardIndeces(newBoardIndeces);
+    }
+  };
 
   const displayPos = (rowIdx, cellIdx) => {
     let cellString = cellIdx + 1;
@@ -149,28 +155,16 @@ const Board = () => {
           <main>
             <div className="board">
               {board.map((row, rowIdx) => (
-                <div
-                  key={rowIdx}
-                  className={
-                    boardIndeces.includes(rowIdx)
-                      ? "your_active_class"
-                      : "your_inactive_class"
-                  }
-                  onClick={() =>
-                    !boardIndeces.includes(rowIdx)
-                      ? setBoardIndeces([...boardIndeces, rowIdx])
-                      : null
-                  }
-                >
+                <div key={rowIdx} className="your_active_class">
                   {row.map((cell, cellIdx) => (
                     <div
                       key={cellIdx}
                       className={
-                        ifClicked & boardIndeces.includes(rowIdx)
-                          ? "cell_Clicked"
-                          : "cell"
+                        boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx]
+                          ? "your_active_class"
+                          : "your_inactive_class"
                       }
-                      onClick={() => setIfClicked(true)}
+                      onClick={() => onCellClick(rowIdx, cellIdx)}
                     ></div>
                   ))}
                 </div>
@@ -262,3 +256,4 @@ const Board = () => {
 };
 
 export default Board;
+
