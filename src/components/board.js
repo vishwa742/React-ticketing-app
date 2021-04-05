@@ -3,8 +3,9 @@ import "./board.css";
 //import logo from "./seat.png";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CheckOut from "./CheckOut.js";
+import $ from "jquery";
 
-const BOARD_SIZE = 10;
+const BOARD_SIZE = 15;
 
 const Board = () => {
   const [board, setBoard] = useState(
@@ -34,6 +35,9 @@ const Board = () => {
   const test = () => {
     console.log("test");
   };
+
+  const [boardIndeces, setBoardIndeces] = useState([]);
+  const [boardIndeces2, setBoardIndeces2] = useState([]);
 
   const displayPos = (rowIdx, cellIdx) => {
     let cellString = cellIdx + 1;
@@ -69,6 +73,24 @@ const Board = () => {
     }
     if (rowIdx === 9) {
       rowLetter = "J";
+    }
+    if (rowIdx === 10) {
+      rowLetter = "K";
+    }
+    if (rowIdx === 11) {
+      rowLetter = "L";
+    }
+    if (rowIdx === 12) {
+      rowLetter = "M";
+    }
+    if (rowIdx === 13) {
+      rowLetter = "N";
+    }
+    if (rowIdx === 14) {
+      rowLetter = "O";
+    }
+    if (rowIdx === 15) {
+      rowLetter = "P";
     }
 
     // TO be changed that so that only unselected seats are passed
@@ -127,19 +149,25 @@ const Board = () => {
           <main>
             <div className="board">
               {board.map((row, rowIdx) => (
-                <div key={rowIdx} className="row" onClick={test}>
+                <div
+                  key={rowIdx}
+                  className={
+                    boardIndeces.includes(rowIdx)
+                      ? "your_active_class"
+                      : "your_inactive_class"
+                  }
+                  onClick={() =>
+                    !boardIndeces.includes(rowIdx)
+                      ? setBoardIndeces([...boardIndeces, rowIdx])
+                      : null
+                  }
+                >
                   {row.map((cell, cellIdx) => (
                     <div
                       key={cellIdx}
                       className="cell"
                       onClick={() => displayPos(rowIdx, cellIdx)}
-                    >
-                      {
-                        <div>
-                          {/* {<img src={logo} className="img"></img>} */}
-                        </div>
-                      }
-                    </div>
+                    ></div>
                   ))}
                 </div>
               ))}

@@ -28,9 +28,11 @@ function App() {
     <>
       {/* <MovieDisplay /> */}
       <Router>
-        <Route path="/" exact component={MovieDisplay}></Route>
-        <Route path="/board" exact component={Board}></Route>
-        <Route path="/checkout" exact component={Checkout}></Route>
+        <Switch>
+          <Route path="/" exact component={MovieDisplay}></Route>
+          <Route path="/board" exact component={Board}></Route>
+          <Route path="/checkout" exact component={Checkout}></Route>
+        </Switch>
       </Router>
     </>
   );

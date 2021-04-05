@@ -1,7 +1,3 @@
-/* .board {
-  outline: 2px solid rgb(134, 154, 189);
-} */
-
 .wrapper {
   height: 100vh;
   display: flex;
@@ -21,20 +17,27 @@ main {
 }
 
 .row {
-  height: 50px;
+  height: 70px;
   margin: 10px;
-  transition: transform 0.1s;
+  /* transition: transform 0.1s; */
 }
 
-.cell:hover {
-  transform: scale(1.3);
+.your_active_class .cell {
+  background-color: orchid;
+}
+.your_inactive_class .row {
+  background-color: orange;
+}
+
+.div.cell {
+  background-color: mediumspringgreen;
 }
 .cell {
-  width: 50px;
-  height: 50px;
-  outline: 1px solid rgb(134, 154, 189);
+  width: 30px;
+  height: 30px;
+  outline: 2px solid rgb(134, 154, 189);
   display: inline-block;
-  background-color: seagreen;
+  background-color: rgb(185, 21, 21);
   margin: 5px;
   transition: transform 0.2s;
   /* position: absolute; */
@@ -49,16 +52,8 @@ main {
   height: 0px;
 }
 
-.row :active {
-  background-color: red;
-}
-
 .cell :active {
-  background-color: red;
-}
-
-div:focus {
-  background-color: rgb(102, 255, 0);
+  background-color: blue;
 }
 
 .item {

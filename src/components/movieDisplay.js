@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./board.css";
 import Seat from "./seat.png";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import MovieList from "./movieList";
 

@@ -9,6 +9,7 @@ function MovieList({ title, poster_path }) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
   return (
     <>
       <article className="movie">
