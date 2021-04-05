@@ -8,9 +8,6 @@ import MovieList from "./components/movieList";
 import Checkout from "./components/CheckOut.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const list = [];
-const array = ["1", "2", "3"];
-
 const API_KEY = "a2ccb0a6c2116c753ac57cfe0bb5b417";
 const NOW_PLAYING =
   "https://api.themoviedb.org/3/movie/now_playing?api_key=a2ccb0a6c2116c753ac57cfe0bb5b417";
@@ -43,6 +40,7 @@ function App() {
             <td>
               <h3>Ticket Booking</h3>
             </td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -56,14 +54,13 @@ function App() {
         <Board />
       </div> */}
 
-      <Router>
+      {/* <Router>
         <div className="container">
-          {/* <Route path="/bookticket" component={Board}></Route> */}
-          <Route path="/board" component={Board}></Route>
-          <Route path="/checkout" component={Checkout}></Route>
+         
+          <Route path="/board" exact component={Board}></Route>
+          <Route path="/checkout" exact component={Checkout}></Route>
         </div>
-        <div className="container">{/* <p1>Hi</p1> */}</div>
-      </Router>
+      </Router> */}
     </>
   );
 }
