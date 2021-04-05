@@ -121,107 +121,109 @@ const Board = () => {
 
   return (
     <>
-      <div class="wrapper">
-        <header></header>
-        <main>
-          <div className="board">
-            {board.map((row, rowIdx) => (
-              <div key={rowIdx} className="row" onClick={test}>
-                {row.map((cell, cellIdx) => (
-                  <div
-                    key={cellIdx}
-                    className="cell"
-                    onClick={() => displayPos(rowIdx, cellIdx)}
-                  >
-                    {
-                      <div>
-                        {/* {<img src={logo} className="img"></img>} */}
-                      </div>
-                    }
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+      <div className="container">
+        <div class="wrapper">
+          <header></header>
+          <main>
+            <div className="board">
+              {board.map((row, rowIdx) => (
+                <div key={rowIdx} className="row" onClick={test}>
+                  {row.map((cell, cellIdx) => (
+                    <div
+                      key={cellIdx}
+                      className="cell"
+                      onClick={() => displayPos(rowIdx, cellIdx)}
+                    >
+                      {
+                        <div>
+                          {/* {<img src={logo} className="img"></img>} */}
+                        </div>
+                      }
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
 
-          <button
-            className="btn"
-            key="1"
-            onClick={() => {
-              setUser1("red");
-              setMasterData({ rows: "", cols: "", user: "" });
-              setRowLoc([]);
-              setColLoc([]);
-              setCombinedPos([]);
-            }}
-          >
-            User 1 :red
-          </button>
-          <button
-            className="btn"
-            key="2"
-            onClick={() => {
-              setUser1("green");
-              setMasterData({ rows: "", cols: "", user: "" });
-              setRowLoc([]);
-              setColLoc([]);
-              setCombinedPos([]);
-            }}
-          >
-            User 2 : green
-          </button>
-          <button
-            className="btn"
-            key="3"
-            onClick={() => {
-              setUser1("blue");
-              setMasterData({ rows: "", cols: "", user: "" });
-              setRowLoc([]);
-              setColLoc([]);
-              setCombinedPos([]);
-            }}
-          >
-            User 3 : blue
-          </button>
-          <button
-            className="btn"
-            key="4"
-            onClick={() => {
-              setUser1("purple");
-              setMasterData({ rows: "", cols: "", user: "" });
-              setRowLoc([]);
-              setColLoc([]);
-              setCombinedPos([]);
-            }}
-          >
-            User 4 : purple
-          </button>
+            <button
+              className="btn"
+              key="1"
+              onClick={() => {
+                setUser1("red");
+                setMasterData({ rows: "", cols: "", user: "" });
+                setRowLoc([]);
+                setColLoc([]);
+                setCombinedPos([]);
+              }}
+            >
+              User 1 :red
+            </button>
+            <button
+              className="btn"
+              key="2"
+              onClick={() => {
+                setUser1("green");
+                setMasterData({ rows: "", cols: "", user: "" });
+                setRowLoc([]);
+                setColLoc([]);
+                setCombinedPos([]);
+              }}
+            >
+              User 2 : green
+            </button>
+            <button
+              className="btn"
+              key="3"
+              onClick={() => {
+                setUser1("blue");
+                setMasterData({ rows: "", cols: "", user: "" });
+                setRowLoc([]);
+                setColLoc([]);
+                setCombinedPos([]);
+              }}
+            >
+              User 3 : blue
+            </button>
+            <button
+              className="btn"
+              key="4"
+              onClick={() => {
+                setUser1("purple");
+                setMasterData({ rows: "", cols: "", user: "" });
+                setRowLoc([]);
+                setColLoc([]);
+                setCombinedPos([]);
+              }}
+            >
+              User 4 : purple
+            </button>
 
-          <button className="btn" key="5" onClick={submitData}>
-            Submit
-          </button>
-          <p>{user1}</p>
-          <Router>
-            <Link to="/checkout">
-              <button className="btn" key="6">
-                Test Submit
-              </button>
-            </Link>
-          </Router>
+            <button className="btn" key="5" onClick={submitData}>
+              Submit
+            </button>
+            <p>{user1}</p>
+            <Router>
+              <Link to="/checkout">
+                <button className="btn" key="6">
+                  Test Submit
+                </button>
+              </Link>
+            </Router>
 
-          <div className="item">
-            <h2>{masterData.user}</h2>
-            <p>{combinedPos}</p>
-          </div>
-          <div className="item">
-            {combinedPos} : Price ${combinedPos.length * 5}
-          </div>
-          <div className="item">Click History:{tempPos}</div>
-          {/* <div className="item">tempPosCopy:{tempPosCopy}</div> */}
+            <div className="item">
+              <h2>{masterData.user}</h2>
+              <p>{combinedPos}</p>
+            </div>
+            <div className="item">
+              {combinedPos} : Price ${combinedPos.length * 5}
+            </div>
+            <div className="item">Click History:{tempPos}</div>
+            {/* <div className="item">tempPosCopy:{tempPosCopy}</div> */}
 
-          {/* <div className="item">tempPos:{checkInsideDisplay.row}</div> */}
-        </main>
-        <footer></footer>
+            {/* <div className="item">tempPos:{checkInsideDisplay.row}</div> */}
+          </main>
+          <footer></footer>
+        </div>
       </div>
     </>
   );
