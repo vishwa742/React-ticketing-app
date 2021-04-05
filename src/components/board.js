@@ -37,7 +37,7 @@ const Board = () => {
   };
 
   const [boardIndeces, setBoardIndeces] = useState([]);
-  const [boardIndeces2, setBoardIndeces2] = useState([]);
+  const [ifClicked, setIfClicked] = useState(false);
 
   const displayPos = (rowIdx, cellIdx) => {
     let cellString = cellIdx + 1;
@@ -165,8 +165,12 @@ const Board = () => {
                   {row.map((cell, cellIdx) => (
                     <div
                       key={cellIdx}
-                      className="cell"
-                      onClick={() => displayPos(rowIdx, cellIdx)}
+                      className={
+                        ifClicked & boardIndeces.includes(rowIdx)
+                          ? "cell_Clicked"
+                          : "cell"
+                      }
+                      onClick={() => setIfClicked(true)}
                     ></div>
                   ))}
                 </div>
