@@ -6,26 +6,24 @@
   flex-direction: column;
 }
 
-header,
-footer {
-  height: 30px;
-  background-color: orangered;
-}
-
 main {
   flex: 1;
 }
 
 .row {
-  height: 70px;
-  margin: 10px;
+  background-color: brown;
   /* transition: transform 0.1s; */
 }
 
-.your_active_class .cell {
+.your_active_class {
   background-color: orchid;
 }
-.your_inactive_class .row {
+.your_inactive_class {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid rgb(134, 154, 189);
+  display: inline-block;
+  margin: 5px;
   background-color: orange;
 }
 
@@ -34,8 +32,9 @@ main {
   height: 30px;
   outline: 2px solid rgb(134, 154, 189);
   display: inline-block;
-  background-color: mediumspringgreen;
   margin: 5px;
+  background-color: mediumspringgreen;
+
   transition: transform 0.2s;
 }
 .cell {

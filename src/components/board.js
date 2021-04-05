@@ -36,8 +36,28 @@ const Board = () => {
     console.log("test");
   };
 
-  const [boardIndeces, setBoardIndeces] = useState([]);
-  const [ifClicked, setIfClicked] = useState(false);
+  const initArray = (arr) => {
+    let rows = [];
+    for (let i = 0; i < arr.length; i++) {
+      let row = [];
+      const currBoard = arr[i];
+      for (let z = 0; z < currBoard.length; z++) {
+        row[z] = false;
+      }
+      rows[i] = row;
+    }
+    return rows;
+  };
+
+  const [boardIndeces, setBoardIndeces] = useState(initArray(board));
+
+  const onCellClick = (rowIdx, cellIdx) => {
+    displayPos(rowIdx, cellIdx);
+    if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
+      boardIndeces[rowIdx][cellIdx] = true;
+      setBoardIndeces([...boardIndeces]);
+    }
+  };
 
   const displayPos = (rowIdx, cellIdx) => {
     let cellString = cellIdx + 1;
@@ -137,10 +157,6 @@ const Board = () => {
     return setMasterData;
   };
 
-  // setBoard(
-  //   new Array(rowIdx + 1).fill(0).map((row) => new Array(cellIdx + 1).fill(0))
-  // );
-
   return (
     <>
       <div className="container">
@@ -149,28 +165,16 @@ const Board = () => {
           <main>
             <div className="board">
               {board.map((row, rowIdx) => (
-                <div
-                  key={rowIdx}
-                  className={
-                    boardIndeces.includes(rowIdx)
-                      ? "your_active_class"
-                      : "your_inactive_class"
-                  }
-                  onClick={() =>
-                    !boardIndeces.includes(rowIdx)
-                      ? setBoardIndeces([...boardIndeces, rowIdx])
-                      : null
-                  }
-                >
+                <div key={rowIdx}>
                   {row.map((cell, cellIdx) => (
                     <div
                       key={cellIdx}
                       className={
-                        ifClicked & boardIndeces.includes(rowIdx)
+                        boardIndeces[rowIdx][cellIdx]
                           ? "cell_Clicked"
-                          : "cell"
+                          : "your_inactive_class"
                       }
-                      onClick={() => setIfClicked(true)}
+                      onClick={() => onCellClick(rowIdx, cellIdx)}
                     ></div>
                   ))}
                 </div>
@@ -250,9 +254,6 @@ const Board = () => {
               {combinedPos} : Price ${combinedPos.length * 5}
             </div>
             <div className="item">Click History:{tempPos}</div>
-            {/* <div className="item">tempPosCopy:{tempPosCopy}</div> */}
-
-            {/* <div className="item">tempPos:{checkInsideDisplay.row}</div> */}
           </main>
           <footer></footer>
         </div>
