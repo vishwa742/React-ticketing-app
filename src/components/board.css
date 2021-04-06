@@ -1,18 +1,9 @@
-.wrapper {
-  height: 100vh;
-  display: flex;
-
-  /* Direction of the items, can be row or column */
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
+.body {
+  background-image: url("./webb-dark.png");
 }
 
 .row {
   background-color: brown;
-  /* transition: transform 0.1s; */
 }
 
 .your_active_class {
@@ -25,6 +16,11 @@ main {
   display: inline-block;
   margin: 5px;
   background-color: orange;
+  transition: transform 0.2s;
+}
+
+.your_inactive_class:hover {
+  transform: scale(1.4);
 }
 
 .cell_Clicked {
@@ -45,20 +41,6 @@ main {
   background-color: rgb(185, 21, 21);
   margin: 5px;
   transition: transform 0.2s;
-  /* position: absolute; */
-  /* top: 0;
-  left: 0;
-  opacity: 0.8;
-  z-index: -5; */
-}
-
-.img {
-  width: 0px;
-  height: 0px;
-}
-
-.cell :active {
-  background-color: blue;
 }
 
 .item {

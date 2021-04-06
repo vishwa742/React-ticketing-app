@@ -18,10 +18,10 @@ import {
 function App() {
   return (
     <>
-      {/* <Board />
-       <MovieDisplay />  */}
+      <Board />
+      {/* <MovieDisplay /> */}
 
-      <Router>
+      {/* <Router>
         <Switch>
           <Route path="/" exact component={withRouter(MovieDisplay)}></Route>
         </Switch>
@@ -31,7 +31,7 @@ function App() {
         <Switch>
           <Route path="/checkout" component={withRouter(Checkout)}></Route>
         </Switch>
-      </Router>
+      </Router> */}
     </>
   );
 }
