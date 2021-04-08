@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CheckOut from "./CheckOut.js";
 import $ from "jquery";
 
-const BOARD_SIZE = 15;
+const BOARD_SIZE = 12;
 
 const Board = () => {
   const [board, setBoard] = useState(
@@ -36,25 +36,30 @@ const Board = () => {
     console.log("test");
   };
 
-  const initArray = (arr) => {
-    let rows = [];
-    for (let i = 0; i < arr.length; i++) {
-      let row = [];
-      const currBoard = arr[i];
-      for (let z = 0; z < currBoard.length; z++) {
-        row[z] = false;
-      }
-      rows[i] = row;
-    }
-    return rows;
-  };
+  // const initArray = (arr) => {
+  //   let rows = [];
+  //   for (let i = 0; i < arr.length; i++) {
+  //     let row = [];
+  //     const currBoard = arr[i];
+  //     for (let z = 0; z < currBoard.length; z++) {
+  //       row[z] = false;
+  //     }
+  //     rows[i] = row;
+  //   }
+  //   return rows;
+  // };
 
-  const [boardIndeces, setBoardIndeces] = useState(initArray(board));
+  const initArray = new Array(BOARD_SIZE)
+    .fill(0)
+    .map((row) => new Array(BOARD_SIZE).fill(0));
+
+  const [boardIndeces, setBoardIndeces] = useState(initArray);
+  const [FinalBoard, setFinalBoard] = useState(boardIndeces);
 
   const onCellClick = (rowIdx, cellIdx) => {
     displayPos(rowIdx, cellIdx);
     if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
-      boardIndeces[rowIdx][cellIdx] = true;
+      boardIndeces[rowIdx][cellIdx] = 1;
       setBoardIndeces([...boardIndeces]);
     }
   };
@@ -133,6 +138,9 @@ const Board = () => {
   // Selecting the Tickets and submitting it -----------------------
 
   const submitData = () => {
+    // const FinalBoard = setFinalBoard(boardIndeces);
+    setFinalBoard(boardIndeces);
+    console.log(boardIndeces);
     setTempPosCopy("");
     //setCombinedPos([]);
     if (user1 === "") {
@@ -168,7 +176,7 @@ const Board = () => {
                   <div
                     key={cellIdx}
                     className={
-                      boardIndeces[rowIdx][cellIdx]
+                      boardIndeces[rowIdx][cellIdx] === 1
                         ? "cell_Clicked"
                         : "your_inactive_class"
                     }

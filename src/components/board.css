@@ -2,17 +2,13 @@
   background-image: url("./webb-dark.png");
 }
 
-.row {
-  background-color: brown;
-}
-
-.your_active_class {
-  background-color: orchid;
-}
 .your_inactive_class {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid rgb(134, 154, 189);
+  width: 25.69px;
+  height: 34.69px;
+  /* width: 30px;
+  height: 30px; */
+  border-radius: 3px;
+  /* outline: 2px solid rgb(134, 154, 189); */
   display: inline-block;
   margin: 5px;
   background-color: orange;
@@ -24,22 +20,15 @@
 }
 
 .cell_Clicked {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid rgb(134, 154, 189);
+  width: 25.69px;
+  height: 34.69px;
+  /* outline: 2px solid rgb(134, 154, 189); */
+  border-radius: 3px;
+
   display: inline-block;
   margin: 5px;
   background-color: mediumspringgreen;
 
-  transition: transform 0.2s;
-}
-.cell {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid rgb(134, 154, 189);
-  display: inline-block;
-  background-color: rgb(185, 21, 21);
-  margin: 5px;
   transition: transform 0.2s;
 }
 
@@ -73,19 +62,4 @@
 .btn:hover {
   background: var(--clr-primary-1);
   color: var(--clr-primary-5);
-}
-
-.bookList {
-  width: 90vw;
-  max-width: 1170px;
-  margin: 5rem auto;
-  display: grid;
-  gap: 2rem;
-}
-
-@media screen and (min-width: 576px) {
-  .bookList {
-    grid-template-columns: repeat(4, 1fr);
-    align-items: start;
-  }
 }
