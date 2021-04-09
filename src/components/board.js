@@ -12,7 +12,8 @@ const Board = () => {
 
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
-
+  const [popUp, setPopUp] = useState([]);
+  const space = " ";
   const [masterData, setMasterData] = useState({
     position: "",
     user: "",
@@ -55,6 +56,14 @@ const Board = () => {
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
   const onCellClick = (rowIdx, cellIdx) => {
+    // var combinedPosition1 = rowLoc.map(function (d, i) {
+    //   return d + String(colLoc[i]);
+    // });
+    // var x = combinedPosition1.map((combinedPosition1) => (
+    //   <p>{combinedPosition1}</p>
+    // ));
+    // console.log(x);
+
     displayPos(rowIdx, cellIdx);
     if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
       boardIndeces[rowIdx][cellIdx] = 1;
@@ -63,7 +72,6 @@ const Board = () => {
   };
 
   const displayPos = (rowIdx, cellIdx) => {
-    console.log(alpArray.length);
     let cellString = cellIdx + 1;
     cellString.toString();
 
@@ -118,10 +126,10 @@ const Board = () => {
       rowLetter = "P";
     }
 
-    // TO be changed that so that only unselected seats are passed
-
     var realTimeBeingClicked = rowLetter + cellString;
-    console.log(realTimeBeingClicked);
+    setPopUp([...popUp, realTimeBeingClicked]);
+    //console.log(realTimeBeingClicked);
+    //alert(realTimeBeingClicked);
     var newTempPos = tempPos.toString();
 
     // if String in string
@@ -136,7 +144,7 @@ const Board = () => {
   // Selecting the Tickets and submitting it
 
   const submitData = () => {
-    console.log(boardIndeces);
+    //console.log(boardIndeces);
     if (rowLoc.length === 0) {
       setMasterData({ position: "", user: "" });
       alert("Select Tickets Before Checking Out");
@@ -195,13 +203,29 @@ const Board = () => {
           </Router>
 
           <div className="item">
-            <h2>{masterData.user}</h2>
-            <p>{combinedPos}</p>
+            {/* <h2>{masterData.user}</h2> */}
+            <h4>{popUp}</h4>
           </div>
           <div className="item">
             {combinedPos} : Price ${combinedPos.length * 5}
           </div>
-          <div className="item">Click History:{tempPos}</div>
+          {/* <div className="item">Click History:{popUp}</div> */}
+
+          <div
+            style={{
+              backgroundColor: "#FFF",
+              display: "block",
+              color: "#000",
+            }}
+          >
+            {popUp.map((item, index) => {
+              return (
+                <span className="cell_Clicked1" key={index}>
+                  {item}
+                </span>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
