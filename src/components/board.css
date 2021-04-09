@@ -1,18 +1,21 @@
 .body {
-  background-image: url("./webb-dark.png");
+  background-image: url("https://www.spicinemas.in/assets/images/backgrounds/spi-background-single.jpg");
 }
 
 .your_inactive_class {
   width: 25.69px;
   height: 34.69px;
-  /* width: 30px;
-  height: 30px; */
   border-radius: 3px;
-  /* outline: 2px solid rgb(134, 154, 189); */
   display: inline-block;
   margin: 5px;
   background-color: orange;
   transition: transform 0.2s;
+}
+
+.row {
+  color: white;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .your_inactive_class:hover {
