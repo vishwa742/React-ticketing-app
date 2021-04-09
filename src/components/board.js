@@ -201,21 +201,11 @@ const Board = () => {
               </button>
             </Link>
           </Router>
-
-          <div className="item">
-            {/* <h2>{masterData.user}</h2> */}
-            <h4>{popUp}</h4>
-          </div>
-          <div className="item">
-            {combinedPos} : Price ${combinedPos.length * 5}
-          </div>
-          {/* <div className="item">Click History:{popUp}</div> */}
-
+          <div></div>
           <div
             style={{
-              backgroundColor: "#FFF",
-              display: "block",
-              color: "#000",
+              backgroundColor: "white",
+              marginTop: "10px",
             }}
           >
             {popUp.map((item, index) => {
@@ -225,6 +215,9 @@ const Board = () => {
                 </span>
               );
             })}
+          </div>
+          <div className="item">
+            {combinedPos} : Price ${combinedPos.length * 5}
           </div>
         </div>
       </div>
