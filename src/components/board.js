@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./board.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import CheckOut from "./CheckOut.js";
 
 const BOARD_SIZE = 10;
@@ -13,12 +13,11 @@ const Board = () => {
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [popUp, setPopUp] = useState([]);
-  const space = " ";
   const [masterData, setMasterData] = useState({
     position: "",
     user: "",
   });
-
+  const [removeDuplicates, setRemoveDuplicates] = useState([]);
   const [combinedPos, setCombinedPos] = useState([]);
   const [tempPos, setTempPos] = useState("");
   const alpArray = [
@@ -127,7 +126,16 @@ const Board = () => {
     }
 
     var realTimeBeingClicked = rowLetter + cellString;
-    setPopUp([...popUp, realTimeBeingClicked]);
+
+    // removeDuplicates.push(...removeDuplicates, realTimeBeingClicked);
+    // console.log(removeDuplicates);
+    // let removeDuplicates1 = [...new Set(removeDuplicates)];
+    // setPopUp([...popUp, removeDuplicates1]);
+
+    let uniqueChars = [...new Set(popUp)];
+    setPopUp([...uniqueChars, realTimeBeingClicked]);
+    setRemoveDuplicates([...new Set(popUp)]);
+
     //console.log(realTimeBeingClicked);
     //alert(realTimeBeingClicked);
     var newTempPos = tempPos.toString();
@@ -194,13 +202,13 @@ const Board = () => {
           <button className="btn" onClick={submitData}>
             Check Out
           </button>
-          <Router>
-            <Link to="/checkout">
-              <button className="btn" key="6">
-                Test Submit
-              </button>
-            </Link>
-          </Router>
+
+          <Link to="/checkout">
+            <button className="btn" key="6">
+              Test Submit
+            </button>
+          </Link>
+
           <div></div>
           <div
             style={{
@@ -208,6 +216,8 @@ const Board = () => {
               marginTop: "10px",
             }}
           >
+            {" "}
+            {/*use removeDuplicates */}
             {popUp.map((item, index) => {
               return (
                 <span className="cell_Clicked1" key={index}>

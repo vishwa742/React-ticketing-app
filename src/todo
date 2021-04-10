@@ -1,5 +1,6 @@
+Fix Routes loading issue
+
 1. Prevent selecting same ticket
 2. Limit no of tickets
 3. Pass movie detail to ticket app
-4. Set up checkout page
-5. Fix Routes loading issue
+4. Set up checkout page 

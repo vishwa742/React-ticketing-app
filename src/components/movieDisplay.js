@@ -17,7 +17,7 @@ function MovieDisplay() {
       .then((res) => res.json())
       .then((data) => {
         setMovieNames(data.results);
-        console.log(movieNames);
+        console.log(data);
       });
   }, []);
   return (
@@ -35,7 +35,7 @@ function MovieDisplay() {
               <img src={Seat} width="50px"></img>
             </td>
             <td>
-              <h3>Ticket Booking</h3>
+              <h3>Ticket Booker</h3>
             </td>
             <td></td>
           </tr>
