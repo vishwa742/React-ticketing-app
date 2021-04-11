@@ -1,6 +1,9 @@
-Fix Routes loading issue
 
 1. Prevent selecting same ticket
 2. Limit no of tickets
 3. Pass movie detail to ticket app
 4. Set up checkout page 
+
+ticket display from bottom - add bottom margin and position at bottom of screen
+
+check for different shapes of grids?

@@ -17,8 +17,7 @@
 
 .row {
   color: white;
-  text-align: center;
-  vertical-align: middle;
+  align-items: baseline;
 }
 
 .your_inactive_class:hover {
@@ -44,6 +43,17 @@
   background-color: mediumspringgreen;
   white-space: nowrap;
   color: black;
+  /* margin-bottom: 75px;
+  justify-content: left; */
+}
+
+.info {
+  left: 0%;
+
+  bottom: 0%;
+  width: 100%;
+
+  opacity: 1;
 }
 
 .item {

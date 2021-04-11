@@ -1,4 +1,7 @@
 import React from "react";
+
+import Board from "./board.js";
+
 import "./board.css";
 import { Link } from "react-router-dom";
 
@@ -15,12 +18,19 @@ function MovieList({ title, poster_path }) {
         <img src={IMG_API + poster_path} alt="" />
         {/* <div className="movie-hover"> */}
 
-        <Link to="/board">
+        {/* <Link to="/board"> */}
+        <Link
+          to={{
+            pathname: "/board",
+            aboutProps: {
+              title: { title },
+            },
+          }}
+        >
           <div className="btn">
             <button className="button">Book Tickets</button>
           </div>
         </Link>
-        {/* <Link to="/checkout"> */}
         <div className="btns">
           <a href={trailer_API}>
             {" "}
@@ -32,6 +42,7 @@ function MovieList({ title, poster_path }) {
         {/* </div> */}
         <div className="movie-title">
           <h3>{title}</h3>
+          {/* <Board {...title} /> */}
         </div>
       </article>
     </>

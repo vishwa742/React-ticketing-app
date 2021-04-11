@@ -228,8 +228,8 @@ nav {
   background: var(--clr-white);
   max-width: var(--fixed-width);
   margin: 0 auto;
-  margin-bottom: 4rem;
-  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem;
   border-radius: var(--radius);
 }
 .form input {
@@ -299,16 +299,9 @@ nav {
   display: flex;
   flex-wrap: wrap;
   background-image: url("webb-dark.png");
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
-/* .movie {
-  margin: 2rem;
-  width: 300px;
-  border-radius: 3px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  position: relative;
-} */
 
 .movie {
   position: relative;

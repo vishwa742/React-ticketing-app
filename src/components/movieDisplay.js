@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./board.css";
 import Seat from "./seat.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Ticket from "./1.png";
 
 import MovieList from "./movieList";
 
@@ -32,7 +32,7 @@ function MovieDisplay() {
         <tbody>
           <tr>
             <td>
-              <img src={Seat} width="50px"></img>
+              <img src={Ticket} width="50px"></img>
             </td>
             <td>
               <h3>Ticket Booker</h3>

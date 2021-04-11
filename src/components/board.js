@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import "./board.css";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CheckOut from "./CheckOut.js";
+import { useLocation } from "react-router-dom";
 
 const BOARD_SIZE = 10;
 
-const Board = () => {
+const Board = (props) => {
+  const location = useLocation();
+  console.log(props.location.state);
   const [board, setBoard] = useState(
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
-
+  const [clickCount, setClickCount] = useState(1);
+  const [showPrice, setShowPrice] = useState("");
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [popUp, setPopUp] = useState([]);
-  const [masterData, setMasterData] = useState({
-    position: "",
-    user: "",
-  });
   const [removeDuplicates, setRemoveDuplicates] = useState([]);
   const [combinedPos, setCombinedPos] = useState([]);
   const [tempPos, setTempPos] = useState("");
@@ -55,14 +55,8 @@ const Board = () => {
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
   const onCellClick = (rowIdx, cellIdx) => {
-    // var combinedPosition1 = rowLoc.map(function (d, i) {
-    //   return d + String(colLoc[i]);
-    // });
-    // var x = combinedPosition1.map((combinedPosition1) => (
-    //   <p>{combinedPosition1}</p>
-    // ));
-    // console.log(x);
-
+    setClickCount(clickCount + 1);
+    setShowPrice("Price : $" + clickCount * 5);
     displayPos(rowIdx, cellIdx);
     if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
       boardIndeces[rowIdx][cellIdx] = 1;
@@ -126,21 +120,11 @@ const Board = () => {
     }
 
     var realTimeBeingClicked = rowLetter + cellString;
-
-    // removeDuplicates.push(...removeDuplicates, realTimeBeingClicked);
-    // console.log(removeDuplicates);
-    // let removeDuplicates1 = [...new Set(removeDuplicates)];
-    // setPopUp([...popUp, removeDuplicates1]);
-
     let uniqueChars = [...new Set(popUp)];
     setPopUp([...uniqueChars, realTimeBeingClicked]);
     setRemoveDuplicates([...new Set(popUp)]);
 
-    //console.log(realTimeBeingClicked);
-    //alert(realTimeBeingClicked);
     var newTempPos = tempPos.toString();
-
-    // if String in string
     if (newTempPos.indexOf(realTimeBeingClicked) >= 0) {
       alert("Ticket already selected");
     } else {
@@ -149,40 +133,31 @@ const Board = () => {
     }
   };
 
-  // Selecting the Tickets and submitting it
-
   const submitData = () => {
-    //console.log(boardIndeces);
     if (rowLoc.length === 0) {
-      setMasterData({ position: "", user: "" });
       alert("Select Tickets Before Checking Out");
     } else {
       var combinedPosition = rowLoc.map(function (d, i) {
         return d + String(colLoc[i]);
       });
-
-      // Covert Position to P tag
       setCombinedPos(
         combinedPosition.map((combinedPosition) => <p>{combinedPosition}</p>)
       );
-      setMasterData({ position: combinedPos, user: "test" });
-
-      // Trying to Combine all previously selected positions ----------------
       setTempPos((tempPos) => {
         return [...tempPos, combinedPosition];
       });
     }
-    return setMasterData;
   };
 
   return (
     <>
       <div className="body">
         <div className="container">
+          {/* <h1>{props.location.state}</h1> */}
           <div className="board">
             {board.map((row, rowIdx) => (
-              <div key={rowIdx} className="row">
-                {alpArray[rowIdx]}
+              <div key={rowIdx}>
+                <span className="row">{alpArray[rowIdx]}</span>
 
                 {row.map((cell, cellIdx) => (
                   <div
@@ -198,36 +173,64 @@ const Board = () => {
               </div>
             ))}
           </div>
-
           <button className="btn" onClick={submitData}>
-            Check Out
+            Confirm
           </button>
-
           <Link to="/checkout">
             <button className="btn" key="6">
-              Test Submit
+              Checkout
             </button>
           </Link>
 
-          <div></div>
-          <div
+          <table
+            style={{
+              backgroundColor: "#000",
+              display: "block",
+              color: "#FFF",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <tbody>
+              <tr>
+                <td align="center" colspan="3">
+                  <div style={{}}>
+                    {popUp.map((item, index) => {
+                      return (
+                        <span className="cell_Clicked1" key={index}>
+                          {item}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </td>
+                <td>
+                  <div style={{ textAlign: "right", display: "block" }}>
+                    {showPrice}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          {/* <div
             style={{
               backgroundColor: "white",
               marginTop: "10px",
             }}
           >
-            {" "}
-            {/*use removeDuplicates */}
             {popUp.map((item, index) => {
               return (
+                
                 <span className="cell_Clicked1" key={index}>
                   {item}
                 </span>
               );
             })}
-          </div>
+          </div> */}
           <div className="item">
             {combinedPos} : Price ${combinedPos.length * 5}
+            {/* {popUp} : Price ${popUp.length * 5} */}
           </div>
         </div>
       </div>
