@@ -8,11 +8,12 @@ const BOARD_SIZE = 10;
 
 const Board = (props) => {
   const location = useLocation();
-  console.log(props.location.state);
+  // console.log(props.location.state);
   const [board, setBoard] = useState(
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
   const [clickCount, setClickCount] = useState(1);
+  const [ifClicked, setIfClicked] = useState(false);
   const [showPrice, setShowPrice] = useState("");
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
@@ -58,10 +59,15 @@ const Board = (props) => {
     setClickCount(clickCount + 1);
     setShowPrice("Price : $" + clickCount * 5);
     displayPos(rowIdx, cellIdx);
-    if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
+
+    // if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
+    if (boardIndeces[rowIdx][cellIdx] == 1) {
+      boardIndeces[rowIdx][cellIdx] = 0;
+    } else {
       boardIndeces[rowIdx][cellIdx] = 1;
-      setBoardIndeces([...boardIndeces]);
     }
+    setBoardIndeces([...boardIndeces]);
+    // }
   };
 
   const displayPos = (rowIdx, cellIdx) => {
@@ -134,6 +140,13 @@ const Board = (props) => {
   };
 
   const submitData = () => {
+    // setIfClicked(true);
+    console.log(boardIndeces);
+    // setBoard(boardIndeces);
+
+    // if (ifClicked) {
+    //   setBoard(boardIndeces);
+    // }
     if (rowLoc.length === 0) {
       alert("Select Tickets Before Checking Out");
     } else {
@@ -193,7 +206,7 @@ const Board = (props) => {
           >
             <tbody>
               <tr>
-                <td align="center" colspan="3">
+                <td>
                   <div style={{}}>
                     {popUp.map((item, index) => {
                       return (
