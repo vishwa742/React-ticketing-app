@@ -1,11 +1,12 @@
 .body {
   background-image: url("webb-dark.png");
+  /* background-color: rgba(0, 0, 0, 0.822); */
   min-height: 100%;
   min-width: 100%;
   position: absolute;
 }
 
-.your_inactive_class {
+.inactive_class {
   width: 25.69px;
   height: 34.69px;
   border-radius: 3px;
@@ -20,7 +21,7 @@
   align-items: baseline;
 }
 
-.your_inactive_class:hover {
+.inactive_class:hover {
   transform: scale(1.4);
 }
 
@@ -32,6 +33,10 @@
   margin: 5px;
   background-color: mediumspringgreen;
   transition: transform 0.2s;
+}
+
+.cell_Clicked:hover {
+  transform: scale(1.4);
 }
 
 .cell_Clicked1 {

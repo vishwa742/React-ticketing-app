@@ -12,13 +12,11 @@ const Board = (props) => {
   const [board, setBoard] = useState(
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
-  const [clickCount, setClickCount] = useState(1);
-  const [ifClicked, setIfClicked] = useState(false);
+  const [ifSelected, setIfSelected] = useState([]);
   const [showPrice, setShowPrice] = useState("");
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [popUp, setPopUp] = useState([]);
-  const [removeDuplicates, setRemoveDuplicates] = useState([]);
   const [combinedPos, setCombinedPos] = useState([]);
   const [tempPos, setTempPos] = useState("");
   const alpArray = [
@@ -56,18 +54,28 @@ const Board = (props) => {
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
   const onCellClick = (rowIdx, cellIdx) => {
-    setClickCount(clickCount + 1);
-    setShowPrice("Price : $" + clickCount * 5);
     displayPos(rowIdx, cellIdx);
+    // setClickCount(clickCount + 1);
+    // setShowPrice("Price : $" + clickCount * 5);
 
-    // if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
     if (boardIndeces[rowIdx][cellIdx] == 1) {
       boardIndeces[rowIdx][cellIdx] = 0;
     } else {
       boardIndeces[rowIdx][cellIdx] = 1;
     }
     setBoardIndeces([...boardIndeces]);
-    // }
+
+    if (ifSelected.indexOf(displayPos(rowIdx, cellIdx)) === -1) {
+      ifSelected.push(displayPos(rowIdx, cellIdx));
+    } else {
+      const index = ifSelected.indexOf(displayPos(rowIdx, cellIdx));
+      if (index > -1) {
+        ifSelected.splice(index, 1);
+      }
+      console.log("popped");
+    }
+
+    console.log(ifSelected);
   };
 
   const displayPos = (rowIdx, cellIdx) => {
@@ -128,7 +136,6 @@ const Board = (props) => {
     var realTimeBeingClicked = rowLetter + cellString;
     let uniqueChars = [...new Set(popUp)];
     setPopUp([...uniqueChars, realTimeBeingClicked]);
-    setRemoveDuplicates([...new Set(popUp)]);
 
     var newTempPos = tempPos.toString();
     if (newTempPos.indexOf(realTimeBeingClicked) >= 0) {
@@ -137,16 +144,12 @@ const Board = (props) => {
       setRowLoc([...rowLoc, rowLetter]);
       setColLoc([...colLoc, cellIdx + 1]);
     }
+    return realTimeBeingClicked;
   };
 
   const submitData = () => {
-    // setIfClicked(true);
     console.log(boardIndeces);
-    // setBoard(boardIndeces);
 
-    // if (ifClicked) {
-    //   setBoard(boardIndeces);
-    // }
     if (rowLoc.length === 0) {
       alert("Select Tickets Before Checking Out");
     } else {
@@ -166,7 +169,6 @@ const Board = (props) => {
     <>
       <div className="body">
         <div className="container">
-          {/* <h1>{props.location.state}</h1> */}
           <div className="board">
             {board.map((row, rowIdx) => (
               <div key={rowIdx}>
@@ -178,7 +180,7 @@ const Board = (props) => {
                     className={
                       boardIndeces[rowIdx][cellIdx] === 1
                         ? "cell_Clicked"
-                        : "your_inactive_class"
+                        : "inactive_class"
                     }
                     onClick={() => onCellClick(rowIdx, cellIdx)}
                   ></div>
@@ -186,6 +188,7 @@ const Board = (props) => {
               </div>
             ))}
           </div>
+          <div style={{ color: "white" }}>⬆ SCREEN THIS WAY ⬆</div>
           <button className="btn" onClick={submitData}>
             Confirm
           </button>
@@ -208,7 +211,7 @@ const Board = (props) => {
               <tr>
                 <td>
                   <div style={{}}>
-                    {popUp.map((item, index) => {
+                    {ifSelected.map((item, index) => {
                       return (
                         <span className="cell_Clicked1" key={index}>
                           {item}
@@ -226,23 +229,8 @@ const Board = (props) => {
             </tbody>
           </table>
 
-          {/* <div
-            style={{
-              backgroundColor: "white",
-              marginTop: "10px",
-            }}
-          >
-            {popUp.map((item, index) => {
-              return (
-                
-                <span className="cell_Clicked1" key={index}>
-                  {item}
-                </span>
-              );
-            })}
-          </div> */}
           <div className="item">
-            {combinedPos} : Price ${combinedPos.length * 5}
+            {ifSelected} : Price ${ifSelected.length * 5}
             {/* {popUp} : Price ${popUp.length * 5} */}
           </div>
         </div>
