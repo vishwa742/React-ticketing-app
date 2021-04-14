@@ -2,4 +2,4 @@
 
 A front end application for booking movie tickets. 
 
-[Live Build](ticketbooker.netlify.app)
+[Live Build](https://ticketbooker.netlify.app/)
