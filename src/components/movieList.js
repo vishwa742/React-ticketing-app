@@ -22,8 +22,9 @@ function MovieList({ title, poster_path }) {
         <Link
           to={{
             pathname: "/board",
-            aboutProps: {
-              title: { title },
+            state: {
+              titleName: title,
+              imgLink: IMG_API + poster_path,
             },
           }}
         >
@@ -31,18 +32,15 @@ function MovieList({ title, poster_path }) {
             <button className="button">Book Tickets</button>
           </div>
         </Link>
-        <div className="btns">
+        {/* <div className="btns">
           <a href={trailer_API}>
             {" "}
             <button className="button">Play Trailer</button>
           </a>
-        </div>
-        {/* </Link> */}
+        </div> */}
 
-        {/* </div> */}
         <div className="movie-title">
           <h3>{title}</h3>
-          {/* <Board {...title} /> */}
         </div>
       </article>
     </>

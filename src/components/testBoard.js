@@ -48,13 +48,23 @@ const NewBoard = () => {
 
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
+  const DEF_DELAY = 1000;
+
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
   const onCellClick = (rowIdx, cellIdx) => {
-    setIvalue(ivalue + 1);
-    displayPos(rowIdx, cellIdx);
-    if (!(boardIndeces[rowIdx] && boardIndeces[rowIdx][cellIdx])) {
-      boardIndeces[rowIdx][cellIdx] = 1;
-      setBoardIndeces([...boardIndeces]);
+    // setIvalue(ivalue + 1);
+    for (var i = 0; i <= rowIdx; i++) {
+      for (var j = 0; j <= cellIdx; j++) {
+        boardIndeces[i][j] = 1;
+        setBoardIndeces([...boardIndeces]);
+        console.log(boardIndeces);
+      }
     }
+
+    displayPos(rowIdx, cellIdx);
   };
 
   const displayPos = (rowIdx, cellIdx) => {
@@ -114,13 +124,6 @@ const NewBoard = () => {
 
     var realTimeBeingClicked = rowLetter + cellString;
 
-    // removeDuplicates.push(...removeDuplicates, realTimeBeingClicked);
-    // console.log(removeDuplicates);
-    // let removeDuplicates1 = [...new Set(removeDuplicates)];
-    // setPopUp([...popUp, removeDuplicates1]);
-
-    //console.log(realTimeBeingClicked);
-    //alert(realTimeBeingClicked);
     var newTempPos = tempPos.toString();
 
     // if String in string
@@ -147,7 +150,9 @@ const NewBoard = () => {
                   <div
                     key={cellIdx}
                     className={
-                      cellIdx == 5 ? "cell_Clicked" : "your_inactive_class"
+                      boardIndeces[rowIdx][cellIdx] === 0
+                        ? "inactive_class"
+                        : "cell_Clicked"
                     }
                     onClick={() => onCellClick(rowIdx, cellIdx)}
                   ></div>

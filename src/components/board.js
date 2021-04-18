@@ -7,13 +7,16 @@ import { useLocation } from "react-router-dom";
 const BOARD_SIZE = 10;
 
 const Board = (props) => {
+  const movieTitle = props.location.state.titleName;
+  const movieImg = props.location.state.imgLink;
+  console.log(props.location.state.titleName);
+
   const location = useLocation();
   // console.log(props.location.state);
   const [board, setBoard] = useState(
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
   const [ifSelected, setIfSelected] = useState([]);
-  const [showPrice, setShowPrice] = useState("");
   const [rowLoc, setRowLoc] = useState([]);
   const [colLoc, setColLoc] = useState([]);
   const [popUp, setPopUp] = useState([]);
@@ -47,6 +50,12 @@ const Board = (props) => {
     "z",
   ];
 
+  // class Data extends React.Component {
+  //   componentDidMount() {
+  //     const title = this.props.location.state.title;
+  //   }
+  // }
+
   const initArray = new Array(BOARD_SIZE)
     .fill(0)
     .map((row) => new Array(BOARD_SIZE).fill(0));
@@ -54,9 +63,11 @@ const Board = (props) => {
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
   const onCellClick = (rowIdx, cellIdx) => {
-    displayPos(rowIdx, cellIdx);
-    // setClickCount(clickCount + 1);
-    // setShowPrice("Price : $" + clickCount * 5);
+    // if (ifSelected.length >= 10) {
+    //   alert("Cant select more than 10 tickets");
+    // }
+    // if (ifSelected.length < 10) {
+    //displayPos(rowIdx, cellIdx);
 
     if (boardIndeces[rowIdx][cellIdx] == 1) {
       boardIndeces[rowIdx][cellIdx] = 0;
@@ -74,7 +85,7 @@ const Board = (props) => {
       }
       console.log("popped");
     }
-
+    // }
     console.log(ifSelected);
   };
 
@@ -168,49 +179,88 @@ const Board = (props) => {
   return (
     <>
       <div className="body">
-        <div className="container">
-          <div className="board">
-            {board.map((row, rowIdx) => (
-              <div key={rowIdx}>
-                <span className="row">{alpArray[rowIdx]}</span>
+        <div
+          className="movie-details"
+          style={{
+            backgroundImage: "url(" + movieImg + ")",
+            backgroundColor: "black",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <img
+            src={movieImg}
+            style={{
+              height: "100%",
+              width: "300px",
+            }}
+          ></img>
 
-                {row.map((cell, cellIdx) => (
-                  <div
-                    key={cellIdx}
-                    className={
-                      boardIndeces[rowIdx][cellIdx] === 1
-                        ? "cell_Clicked"
-                        : "inactive_class"
-                    }
-                    onClick={() => onCellClick(rowIdx, cellIdx)}
-                  ></div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div style={{ color: "white" }}>⬆ SCREEN THIS WAY ⬆</div>
-          <button className="btn" onClick={submitData}>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="movie-title" style={{ fontSize: "20px" }}>
+                    {movieTitle}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div className="movie-title" style={{}}>
+                    PVR Cinemas, Delhi. 12:30pm
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="board">
+          {board.map((row, rowIdx) => (
+            <div key={rowIdx}>
+              <span className="row">{alpArray[rowIdx]}</span>
+
+              {row.map((cell, cellIdx) => (
+                <div
+                  key={cellIdx}
+                  className={
+                    boardIndeces[rowIdx][cellIdx] === 1
+                      ? "cell_Clicked"
+                      : "inactive_class"
+                  }
+                  onClick={() => onCellClick(rowIdx, cellIdx)}
+                ></div>
+              ))}
+            </div>
+          ))}
+          <div style={{ color: "black" }}>↓ SCREEN THIS WAY ↓</div>
+        </div>
+
+        {/* <button className="btn" onClick={submitData}>
             Confirm
-          </button>
-          <Link to="/checkout">
-            <button className="btn" key="6">
-              Checkout
-            </button>
-          </Link>
+          </button> */}
 
+        {ifSelected.length > 0 && (
           <table
             style={{
-              backgroundColor: "#000",
               display: "block",
               color: "#FFF",
               justifyContent: "space-between",
               width: "100%",
+              height: "60px",
+              position: "fixed",
+              bottom: "0%",
+              backgroundColor: "#393838",
+              opacity: "1",
             }}
           >
             <tbody>
               <tr>
                 <td>
-                  <div style={{}}>
+                  <div className="element4">Ticket Info:</div>
+                </td>
+                <td>
+                  <div className="element1">
                     {ifSelected.map((item, index) => {
                       return (
                         <span className="cell_Clicked1" key={index}>
@@ -221,19 +271,24 @@ const Board = (props) => {
                   </div>
                 </td>
                 <td>
-                  <div style={{ textAlign: "right", display: "block" }}>
-                    {showPrice}
-                  </div>
+                  <div className="element2">TOTAL (USD)</div>
+                </td>
+                <td>
+                  <div className="element2">{ifSelected.length * 5}</div>
+                </td>
+                <td>
+                  <Link to="/checkout">
+                    <div className="element3">
+                      <button className="btn" key="6">
+                        Checkout
+                      </button>
+                    </div>
+                  </Link>
                 </td>
               </tr>
             </tbody>
           </table>
-
-          <div className="item">
-            {ifSelected} : Price ${ifSelected.length * 5}
-            {/* {popUp} : Price ${popUp.length * 5} */}
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
