@@ -3,8 +3,11 @@ import "./board.css";
 import { Link } from "react-router-dom";
 import CheckOut from "./CheckOut.js";
 import { useLocation } from "react-router-dom";
+import Bkg from "./erd.png";
 
 const BOARD_SIZE = 10;
+const rowSize = 10;
+const colSize = 15;
 
 const Board = (props) => {
   const movieTitle = props.location.state.titleName;
@@ -14,7 +17,7 @@ const Board = (props) => {
   const location = useLocation();
   // console.log(props.location.state);
   const [board, setBoard] = useState(
-    new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
+    new Array(rowSize).fill(0).map((row) => new Array(colSize).fill(0))
   );
   const [ifSelected, setIfSelected] = useState([]);
   const [rowLoc, setRowLoc] = useState([]);
@@ -22,6 +25,8 @@ const Board = (props) => {
   const [popUp, setPopUp] = useState([]);
   const [combinedPos, setCombinedPos] = useState([]);
   const [tempPos, setTempPos] = useState("");
+  const testEmptyRow = [8, 9, 10];
+
   const alpArray = [
     "A",
     "B",
@@ -56,9 +61,9 @@ const Board = (props) => {
   //   }
   // }
 
-  const initArray = new Array(BOARD_SIZE)
+  const initArray = new Array(rowSize)
     .fill(0)
-    .map((row) => new Array(BOARD_SIZE).fill(0));
+    .map((row) => new Array(colSize).fill(0));
 
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
@@ -182,46 +187,67 @@ const Board = (props) => {
         <div
           className="movie-details"
           style={{
-            backgroundImage: "url(" + movieImg + ")",
-            backgroundColor: "black",
-            backgroundRepeat: "no-repeat",
+            overflow: "hidden",
+            position: "relative",
           }}
         >
           <img
             src={movieImg}
             style={{
-              height: "100%",
+              height: "355px",
               width: "300px",
             }}
           ></img>
+          <div
+            style={{
+              position: "absolute",
+              top: "175px",
+              left: "0",
+              zIndex: "5",
+            }}
+          >
+            <div
+              className="movie-title"
+              style={{
+                fontSize: "20px",
+                // backgroundColor: "red",
+                color: "white",
+                height: "40px",
+                marginLeft: "10px",
+                padding: "10px",
+              }}
+            >
+              {movieTitle}
+            </div>
 
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <div className="movie-title" style={{ fontSize: "20px" }}>
-                    {movieTitle}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="movie-title" style={{}}>
-                    PVR Cinemas, Delhi. 12:30pm
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <div
+              className="movie-title"
+              style={{
+                // backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              AMC, Clifton Commons, 12:30pm
+            </div>
+          </div>
         </div>
 
-        <div className="board">
+        <div className="board" style={{ backgroundColor: "white" }}>
           {board.map((row, rowIdx) => (
-            <div key={rowIdx}>
-              <span className="row">{alpArray[rowIdx]}</span>
+            <div
+              key={rowIdx}
+              style={
+                {
+                  // position: "relative",
+                  // top: 0 + { rowIdx },
+                  // zIndex: { rowIdx },
+                }
+              }
+            >
+              <span>{alpArray[rowIdx]}</span>
 
               {row.map((cell, cellIdx) => (
-                <div
+                <span
                   key={cellIdx}
                   className={
                     boardIndeces[rowIdx][cellIdx] === 1
@@ -229,7 +255,7 @@ const Board = (props) => {
                       : "inactive_class"
                   }
                   onClick={() => onCellClick(rowIdx, cellIdx)}
-                ></div>
+                ></span>
               ))}
             </div>
           ))}
