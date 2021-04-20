@@ -187,52 +187,77 @@ const Board = (props) => {
         <div
           className="movie-details"
           style={{
-            overflow: "hidden",
+            // overflow: "hidden",
             position: "relative",
+            backgroundImage: "url(" + movieImg + ")",
+            // backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            WebkitFilter: "blur(10px) saturate(2)",
+          }}
+        ></div>
+        <img
+          src={movieImg}
+          style={{
+            height: "355px",
+            width: "300px",
+            position: "absolute",
+
+            top: "0px",
+            left: "600px",
+            zIndex: "100",
+          }}
+        ></img>
+
+        <div
+          style={{
+            position: "absolute",
+
+            top: "175px",
+            left: "70px",
+            zIndex: "5",
           }}
         >
-          <img
-            src={movieImg}
-            style={{
-              height: "355px",
-              width: "300px",
-            }}
-          ></img>
           <div
+            className="movie-title"
             style={{
-              position: "absolute",
-              top: "175px",
-              left: "0",
-              zIndex: "5",
+              fontSize: "20px",
+              // backgroundColor: "red",
+              color: "white",
+              height: "40px",
+              marginLeft: "10px",
+              padding: "10px",
             }}
           >
-            <div
-              className="movie-title"
-              style={{
-                fontSize: "20px",
-                // backgroundColor: "red",
-                color: "white",
-                height: "40px",
-                marginLeft: "10px",
-                padding: "10px",
-              }}
-            >
-              {movieTitle}
-            </div>
+            {movieTitle}
+          </div>
 
-            <div
-              className="movie-title"
-              style={{
-                // backgroundColor: "red",
-                color: "white",
-              }}
-            >
-              AMC, Clifton Commons, 12:30pm
-            </div>
+          <div
+            className="movie-title"
+            style={{
+              // backgroundColor: "red",
+              color: "white",
+            }}
+          >
+            AMC, Clifton Commons, 12:30pm
           </div>
         </div>
 
         <div className="board" style={{ backgroundColor: "white" }}>
+          <div style={{ marginBottom: "12px" }}>
+            <div
+              className="inactive_class"
+              style={{ marginRight: "150px", marginLeft: "40px" }}
+            >
+              <div style={{ paddingLeft: "30px" }}> Available</div>
+            </div>
+            <div className="cell_Clicked" style={{ marginRight: "150px" }}>
+              <div style={{ paddingLeft: "30px" }}> Selected</div>
+            </div>
+            <div className="cell_Clicked1" style={{ marginRight: "150px" }}>
+              <div style={{ paddingLeft: "30px" }}> Unavailable</div>
+            </div>
+          </div>
+
           {board.map((row, rowIdx) => (
             <div
               key={rowIdx}
@@ -289,7 +314,7 @@ const Board = (props) => {
                   <div className="element1">
                     {ifSelected.map((item, index) => {
                       return (
-                        <span className="cell_Clicked1" key={index}>
+                        <span className="cell_Clicked" key={index}>
                           {item}
                         </span>
                       );
