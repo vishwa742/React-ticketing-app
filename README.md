@@ -8,3 +8,5 @@ A front end application for booking movie tickets.
 ### Project Screenshots
 
 <img src="Images/1.png" width="800">
+
+<img src="Images/2.png" width="800">
