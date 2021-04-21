@@ -30,7 +30,7 @@ const Board = (props) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth > 1278) {
+    if (window.innerWidth > 900) {
       setIsDesktop(true);
       setIsMobile(false);
     } else {
@@ -201,152 +201,323 @@ const Board = (props) => {
 
   return (
     <>
-      <div className="body">
-        <div
-          className="movie-details"
-          style={{
-            position: "relative",
-            backgroundImage: "url(" + movieImg + ")",
-            backgroundSize: "cover",
-            WebkitFilter: " saturate(2)",
-          }}
-        ></div>
-        {isDesktop && (
+      {isMobile && (
+        <div className="body-mobile">
+          <div
+            className="movie-details-mobile"
+            style={{
+              position: "relative",
+              backgroundImage: "url(" + movieImg + ")",
+              backgroundSize: "cover",
+              WebkitFilter: " saturate(2)",
+            }}
+          ></div>
+          {isDesktop && (
+            <img
+              src={movieImg}
+              style={{
+                height: "49%",
+                width: "20%",
+                position: "absolute",
+                //textAlign: "center",
+                top: "0px",
+                //  left: "600px",
+                left: "40%",
+                zIndex: "100",
+              }}
+            ></img>
+          )}
+          <div
+            style={{
+              position: "absolute",
+
+              top: "175px",
+              left: "70px",
+              zIndex: "5",
+            }}
+          >
+            <div
+              className="movie-title-mobile"
+              style={{
+                fontSize: "20px",
+                // backgroundColor: "red",
+                color: "white",
+                height: "40px",
+                marginLeft: "10px",
+                padding: "10px",
+              }}
+            >
+              {movieTitle}
+            </div>
+
+            <div
+              className="movie-title-mobile"
+              style={{
+                // backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              AMC, Clifton Commons, 12:30pm
+            </div>
+          </div>
+          <div className="board-mobile" style={{ backgroundColor: "white" }}>
+            <div style={{ marginBottom: "1%" }}>
+              <div
+                className="inactive_class-mobile"
+                style={{ marginRight: "20%", marginLeft: "8%" }}
+              >
+                <div style={{ paddingLeft: "99%" }}> Available</div>
+              </div>
+              <div
+                className="cell_Clicked-mobile"
+                style={{ marginRight: "20%" }}
+              >
+                <div style={{ paddingLeft: "99%" }}> Selected</div>
+              </div>
+              <div
+                className="cell_Clicked1-mobile"
+                style={{ marginRight: "20%" }}
+              >
+                <div style={{ paddingLeft: "99%" }}> Unavailable</div>
+              </div>
+            </div>
+
+            {board.map((row, rowIdx) => (
+              <div key={rowIdx} style={{ width: "100%", height: "9%" }}>
+                <span>{alpArray[rowIdx]}</span>
+
+                {row.map((cell, cellIdx) => (
+                  <span
+                    key={cellIdx}
+                    className={
+                      boardIndeces[rowIdx][cellIdx] === 1
+                        ? "cell_Clicked-mobile"
+                        : "inactive_class-mobile"
+                    }
+                    onClick={() => onCellClick(rowIdx, cellIdx)}
+                  ></span>
+                ))}
+              </div>
+            ))}
+            <div style={{ color: "black" }}>↓ SCREEN THIS WAY ↓</div>
+          </div>
+          {/* <button className="btn" onClick={submitData}>
+            Confirm
+          </button> */}
+          {ifSelected.length > 0 && (
+            <table
+              style={{
+                display: "block",
+                color: "#FFF",
+                justifyContent: "space-between",
+                width: "100%",
+                height: "8%",
+                position: "fixed",
+                bottom: "0%",
+                backgroundColor: "#393838",
+                opacity: "1",
+              }}
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <div className="element4-mobile">Ticket Info:</div>
+                  </td>
+                  <td>
+                    <div className="element1-mobile">
+                      {ifSelected.map((item, index) => {
+                        return (
+                          <span className="cell_Clicked-mobile" key={index}>
+                            {item}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="element2-mobile">TOTAL (USD)</div>
+                  </td>
+                  <td>
+                    <div className="element2-mobile">
+                      {ifSelected.length * 5}
+                    </div>
+                  </td>
+                  <td>
+                    <Link to="/checkout">
+                      <div className="element3-mobile">
+                        <button className="btn" key="6">
+                          Checkout
+                        </button>
+                      </div>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+      {/* -------------------------------------------------------------- */}
+      {isDesktop && (
+        <div className="body">
+          <div
+            className="movie-details"
+            style={{
+              // overflow: "hidden",
+              position: "relative",
+              backgroundImage: "url(" + movieImg + ")",
+              // backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              WebkitFilter: "blur(10px) saturate(2)",
+            }}
+          ></div>
           <img
             src={movieImg}
             style={{
-              height: "49%",
-              width: "20%",
+              height: "355px",
+              width: "300px",
               position: "absolute",
-              //textAlign: "center",
+
               top: "0px",
-              //  left: "600px",
-              left: "40%",
+              left: "600px",
               zIndex: "100",
             }}
           ></img>
-        )}
-        <div
-          style={{
-            position: "absolute",
-
-            top: "175px",
-            left: "70px",
-            zIndex: "5",
-          }}
-        >
-          <div
-            className="movie-title"
-            style={{
-              fontSize: "20px",
-              // backgroundColor: "red",
-              color: "white",
-              height: "40px",
-              marginLeft: "10px",
-              padding: "10px",
-            }}
-          >
-            {movieTitle}
-          </div>
 
           <div
-            className="movie-title"
             style={{
-              // backgroundColor: "red",
-              color: "white",
+              position: "absolute",
+
+              top: "175px",
+              left: "70px",
+              zIndex: "5",
             }}
           >
-            AMC, Clifton Commons, 12:30pm
-          </div>
-        </div>
-        <div className="board" style={{ backgroundColor: "white" }}>
-          <div style={{ marginBottom: "1%" }}>
             <div
-              className="inactive_class"
-              style={{ marginRight: "20%", marginLeft: "8%" }}
+              className="movie-title"
+              style={{
+                fontSize: "20px",
+                // backgroundColor: "red",
+                color: "white",
+                height: "40px",
+                marginLeft: "10px",
+                padding: "10px",
+              }}
             >
-              <div style={{ paddingLeft: "99%" }}> Available</div>
+              {movieTitle}
             </div>
-            <div className="cell_Clicked" style={{ marginRight: "20%" }}>
-              <div style={{ paddingLeft: "99%" }}> Selected</div>
-            </div>
-            <div className="cell_Clicked1" style={{ marginRight: "20%" }}>
-              <div style={{ paddingLeft: "99%" }}> Unavailable</div>
+
+            <div
+              className="movie-title"
+              style={{
+                // backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              AMC, Clifton Commons, 12:30pm
             </div>
           </div>
 
-          {board.map((row, rowIdx) => (
-            <div key={rowIdx} style={{ width: "100%", height: "9%" }}>
-              <span>{alpArray[rowIdx]}</span>
-
-              {row.map((cell, cellIdx) => (
-                <span
-                  key={cellIdx}
-                  className={
-                    boardIndeces[rowIdx][cellIdx] === 1
-                      ? "cell_Clicked"
-                      : "inactive_class"
-                  }
-                  onClick={() => onCellClick(rowIdx, cellIdx)}
-                ></span>
-              ))}
+          <div className="board" style={{ backgroundColor: "white" }}>
+            <div style={{ marginBottom: "12px" }}>
+              <div
+                className="inactive_class"
+                style={{ marginRight: "150px", marginLeft: "40px" }}
+              >
+                <div style={{ paddingLeft: "30px" }}> Available</div>
+              </div>
+              <div className="cell_Clicked" style={{ marginRight: "150px" }}>
+                <div style={{ paddingLeft: "30px" }}> Selected</div>
+              </div>
+              <div className="cell_Clicked1" style={{ marginRight: "150px" }}>
+                <div style={{ paddingLeft: "30px" }}> Unavailable</div>
+              </div>
             </div>
-          ))}
-          <div style={{ color: "black" }}>↓ SCREEN THIS WAY ↓</div>
-        </div>
-        {/* <button className="btn" onClick={submitData}>
+
+            {board.map((row, rowIdx) => (
+              <div
+                key={rowIdx}
+                style={
+                  {
+                    // position: "relative",
+                    // top: 0 + { rowIdx },
+                    // zIndex: { rowIdx },
+                  }
+                }
+              >
+                <span>{alpArray[rowIdx]}</span>
+
+                {row.map((cell, cellIdx) => (
+                  <span
+                    key={cellIdx}
+                    className={
+                      boardIndeces[rowIdx][cellIdx] === 1
+                        ? "cell_Clicked"
+                        : "inactive_class"
+                    }
+                    onClick={() => onCellClick(rowIdx, cellIdx)}
+                  ></span>
+                ))}
+              </div>
+            ))}
+            <div style={{ color: "black" }}>↓ SCREEN THIS WAY ↓</div>
+          </div>
+
+          {/* <button className="btn" onClick={submitData}>
             Confirm
           </button> */}
-        {ifSelected.length > 0 && (
-          <table
-            style={{
-              display: "block",
-              color: "#FFF",
-              justifyContent: "space-between",
-              width: "100%",
-              height: "8%",
-              position: "fixed",
-              bottom: "0%",
-              backgroundColor: "#393838",
-              opacity: "1",
-            }}
-          >
-            <tbody>
-              <tr>
-                <td>
-                  <div className="element4">Ticket Info:</div>
-                </td>
-                <td>
-                  <div className="element1">
-                    {ifSelected.map((item, index) => {
-                      return (
-                        <span className="cell_Clicked" key={index}>
-                          {item}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </td>
-                <td>
-                  <div className="element2">TOTAL (USD)</div>
-                </td>
-                <td>
-                  <div className="element2">{ifSelected.length * 5}</div>
-                </td>
-                <td>
-                  <Link to="/checkout">
-                    <div className="element3">
-                      <button className="btn" key="6">
-                        Checkout
-                      </button>
+
+          {ifSelected.length > 0 && (
+            <table
+              style={{
+                display: "block",
+                color: "#FFF",
+                justifyContent: "space-between",
+                width: "100%",
+                height: "60px",
+                position: "fixed",
+                bottom: "0%",
+                backgroundColor: "#393838",
+                opacity: "1",
+              }}
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <div className="element4">Ticket Info:</div>
+                  </td>
+                  <td>
+                    <div className="element1">
+                      {ifSelected.map((item, index) => {
+                        return (
+                          <span className="cell_Clicked" key={index}>
+                            {item}
+                          </span>
+                        );
+                      })}
                     </div>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        )}
-      </div>
+                  </td>
+                  <td>
+                    <div className="element2">TOTAL (USD)</div>
+                  </td>
+                  <td>
+                    <div className="element2">{ifSelected.length * 5}</div>
+                  </td>
+                  <td>
+                    <Link to="/checkout">
+                      <div className="element3">
+                        <button className="btn" key="6">
+                          Checkout
+                        </button>
+                      </div>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
     </>
   );
 };
