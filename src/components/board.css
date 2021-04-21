@@ -14,12 +14,14 @@
 }
 
 .inactive_class {
-  width: 25.69px;
-  height: 34.69px;
-  border-radius: 3px;
+  /* width: 25.69px;
+  height: 34.69px; */
+  width: 3%;
+  height: 65%;
+  /* border-radius: 3px; */
   display: inline-block;
-  margin: 5px;
-  background-color: gray;
+  margin: 4px;
+  background-color: rgb(109, 0, 0);
   transition: transform 0.2s;
 }
 
@@ -33,11 +35,13 @@
 }
 
 .cell_Clicked {
-  width: 25.69px;
-  height: 34.69px;
-  border-radius: 3px;
+  /* width: 25.69px;
+  height: 34.69px; */
+  width: 3%;
+  height: 65%;
+  /* border-radius: 3px; */
   display: inline-block;
-  margin: 5px;
+  margin: 4px;
   background-color: rgb(12, 125, 231);
   transition: transform 0.2s;
   text-align: center;
@@ -48,11 +52,13 @@
 }
 
 .cell_Clicked1 {
-  width: 25.69px;
-  height: 34.69px;
-  border-radius: 3px;
+  /* width: 25.69px;
+  height: 34.69px; */
+  width: 3%;
+  height: 65%;
+  /* border-radius: 3px; */
   display: inline-block;
-  margin: 5px;
+  margin: 4px;
   background-color: rgb(231, 12, 12);
   white-space: nowrap;
   color: black;
@@ -132,12 +138,12 @@
 
 .element4 {
   display: inline-block;
-  width: 100px;
+  width: 20%;
 }
 
 .movie-details {
   width: 90%;
-  height: 355px;
+  height: 35.5%;
   align-items: center;
   margin: auto;
   background: linear-gradient(
